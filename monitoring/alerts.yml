@@ -1,0 +1,69 @@
+groups:
+  - name: orbitly-production-alerts
+    rules:
+      - alert: ApiServiceDown
+        expr: up{job="orbitly-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Orbitly API service is unreachable"
+          description: "API instance {{ $labels.instance }} has been down for over 1 minute."
+          runbook: "docs/runbooks/db-failover.md"
+
+      - alert: QueueLagHigh
+        expr: bullmq_queue_delayed_jobs{queue="publishing"} > 250
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "BullMQ publishing queue lag exceeding 5 minutes"
+          description: "Delayed and waiting publishing jobs are accumulating. Worker daemon may be stalled or rate-limited upstream."
+          runbook: "docs/runbooks/posts-not-publishing.md"
+
+      - alert: HighPublishingFailureRate
+        expr: rate(orbitly_publishing_failures_total[5m]) / rate(orbitly_publishing_attempts_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Publishing failure rate exceeded 5%"
+          description: "Over 5% of social post publications failed in the past 5 minutes across one or more providers."
+          runbook: "docs/runbooks/provider-outage.md"
+
+      - alert: HighDatabaseConnectionPoolUsage
+        expr: pg_stat_activity_count / pg_settings_max_connections > 0.80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "PostgreSQL connection pool exceeds 80%"
+          description: "Active connections are near pool exhaustion. Investigate query leaks or scale pool."
+          runbook: "docs/runbooks/db-failover.md"
+
+      - alert: DiskSpaceLow
+        expr: node_filesystem_free_bytes / node_filesystem_size_bytes < 0.20
+        for: 15m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Host disk space under 20%"
+          description: "Persistent storage on {{ $labels.device }} has less than 20% remaining capacity."
+
+      - alert: TlsCertExpiringSoon
+        expr: probe_ssl_earliest_cert_expiry - time() < 86400 * 14
+        for: 1h
+        labels:
+          severity: warning
+        annotations:
+          summary: "SSL/TLS Certificate expiring within 14 days"
+          description: "Caddy automatic cert renewal may be failing for domain {{ $labels.instance }}."
+
+      - alert: DatabaseBackupFailed
+        expr: time() - orbitly_last_successful_backup_timestamp > 90000
+        for: 1h
+        labels:
+          severity: critical
+        annotations:
+          summary: "PostgreSQL daily backup missing or failed"
+          description: "No successful database dump recorded in the last 25 hours."

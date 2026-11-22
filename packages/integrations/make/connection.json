@@ -1,0 +1,26 @@
+{
+  "name": "orbitly",
+  "label": "Orbitly Connection",
+  "type": "api-key",
+  "communication": {
+    "url": "https://api.orbitly.io/public/v1/channels",
+    "headers": {
+      "Authorization": "Bearer {{parameters.apiKey}}"
+    },
+    "response": {
+      "error": {
+        "type": "RuntimeError",
+        "message": "[{{statusCode}}] {{body.message}}"
+      }
+    }
+  },
+  "parameters": [
+    {
+      "name": "apiKey",
+      "type": "text",
+      "label": "API Key",
+      "required": true,
+      "description": "Your Orbitly API Key with appropriate scopes from Developer Settings."
+    }
+  ]
+}

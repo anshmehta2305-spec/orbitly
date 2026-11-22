@@ -1,0 +1,175 @@
+{
+  "modules": [
+    {
+      "name": "watchPostsPublished",
+      "type": "trigger",
+      "subtype": "instant",
+      "label": "Watch Published Posts",
+      "description": "Triggers in real-time when a post is successfully published to a connected social channel.",
+      "connection": "orbitly",
+      "webhook": {
+        "type": "web",
+        "subscribe": {
+          "url": "https://api.orbitly.io/public/v1/webhooks",
+          "method": "POST",
+          "headers": {
+            "Authorization": "Bearer {{connection.apiKey}}",
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "url": "{{webhook.url}}",
+            "events": ["post.published"]
+          },
+          "response": {
+            "data": "{{body.id}}"
+          }
+        },
+        "unsubscribe": {
+          "url": "https://api.orbitly.io/public/v1/webhooks/{{webhook.id}}",
+          "method": "DELETE",
+          "headers": {
+            "Authorization": "Bearer {{connection.apiKey}}"
+          }
+        }
+      }
+    },
+    {
+      "name": "watchPostsFailed",
+      "type": "trigger",
+      "subtype": "instant",
+      "label": "Watch Failed Posts",
+      "description": "Triggers when publishing fails for any post or channel variant.",
+      "connection": "orbitly",
+      "webhook": {
+        "type": "web",
+        "subscribe": {
+          "url": "https://api.orbitly.io/public/v1/webhooks",
+          "method": "POST",
+          "headers": {
+            "Authorization": "Bearer {{connection.apiKey}}",
+            "Content-Type": "application/json"
+          },
+          "body": {
+            "url": "{{webhook.url}}",
+            "events": ["post.failed"]
+          },
+          "response": {
+            "data": "{{body.id}}"
+          }
+        },
+        "unsubscribe": {
+          "url": "https://api.orbitly.io/public/v1/webhooks/{{webhook.id}}",
+          "method": "DELETE",
+          "headers": {
+            "Authorization": "Bearer {{connection.apiKey}}"
+          }
+        }
+      }
+    },
+    {
+      "name": "createPost",
+      "type": "action",
+      "label": "Create Post",
+      "description": "Create a draft, scheduled, or instant post across connected channels.",
+      "connection": "orbitly",
+      "communication": {
+        "url": "https://api.orbitly.io/public/v1/posts",
+        "method": "POST",
+        "headers": {
+          "Authorization": "Bearer {{connection.apiKey}}",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "content": "{{parameters.content}}",
+          "channelIds": "{{parameters.channelIds}}",
+          "scheduledAt": "{{parameters.scheduledAt}}",
+          "mediaUrls": "{{parameters.mediaUrls}}"
+        },
+        "response": {
+          "output": "{{body.data}}"
+        }
+      },
+      "parameters": [
+        {
+          "name": "content",
+          "type": "text",
+          "label": "Post Content",
+          "required": true
+        },
+        {
+          "name": "channelIds",
+          "type": "array",
+          "spec": { "type": "text" },
+          "label": "Channel IDs",
+          "required": true
+        },
+        {
+          "name": "scheduledAt",
+          "type": "date",
+          "label": "Scheduled Time",
+          "required": false
+        },
+        {
+          "name": "mediaUrls",
+          "type": "array",
+          "spec": { "type": "url" },
+          "label": "Media URLs",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "uploadMedia",
+      "type": "action",
+      "label": "Upload Media",
+      "description": "Obtain pre-signed upload URL and public CDN URL for media assets.",
+      "connection": "orbitly",
+      "communication": {
+        "url": "https://api.orbitly.io/public/v1/media/upload-url",
+        "method": "POST",
+        "headers": {
+          "Authorization": "Bearer {{connection.apiKey}}",
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "fileName": "{{parameters.fileName}}",
+          "mimeType": "{{parameters.mimeType}}"
+        },
+        "response": {
+          "output": "{{body}}"
+        }
+      },
+      "parameters": [
+        {
+          "name": "fileName",
+          "type": "text",
+          "label": "File Name",
+          "required": true
+        },
+        {
+          "name": "mimeType",
+          "type": "text",
+          "label": "MIME Type",
+          "default": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "listChannels",
+      "type": "action",
+      "label": "List Channels",
+      "description": "Retrieve all connected social media channels in the workspace.",
+      "connection": "orbitly",
+      "communication": {
+        "url": "https://api.orbitly.io/public/v1/channels",
+        "method": "GET",
+        "headers": {
+          "Authorization": "Bearer {{connection.apiKey}}"
+        },
+        "response": {
+          "output": "{{body.data}}"
+        }
+      }
+    }
+  ]
+}

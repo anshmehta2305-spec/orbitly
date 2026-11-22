@@ -1,0 +1,9 @@
+{
+  "name": "@orbitly/make-app",
+  "version": "1.0.0",
+  "description": "Orbitly integration app for Make (Integromat) - Social media scheduler and publishing automation",
+  "main": "app.json",
+  "scripts": {
+    "test": "vitest run"
+  }
+}

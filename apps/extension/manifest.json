@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Orbitly — Quick Social Share Companion",
+  "version": "1.0.0",
+  "description": "Quick-share any article, blog post, or webpage to your social channels using Orbitly.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://api.orbitly.io/*",
+    "http://localhost:4000/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Share with Orbitly"
+  },
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content.js"]
+    }
+  ]
+}

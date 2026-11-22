@@ -1,0 +1,125 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 6, "x": 0, "y": 0 },
+      "id": 1,
+      "title": "API Request Rate (req/sec)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(http_requests_total[1m])) by (status)",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 6, "x": 6, "y": 0 },
+      "id": 2,
+      "title": "API Latency (p50 / p95 / p99)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p50"
+        },
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95"
+        },
+        {
+          "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p99"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 6, "x": 12, "y": 0 },
+      "id": 3,
+      "title": "BullMQ Publishing Queue Depth",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "bullmq_queue_waiting_jobs{queue=\"publishing\"}",
+          "legendFormat": "Waiting"
+        },
+        {
+          "expr": "bullmq_queue_active_jobs{queue=\"publishing\"}",
+          "legendFormat": "Active"
+        },
+        {
+          "expr": "bullmq_queue_delayed_jobs{queue=\"publishing\"}",
+          "legendFormat": "Delayed"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 6, "x": 18, "y": 0 },
+      "id": 4,
+      "title": "Publishing Success Rate by Provider",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(orbitly_publishing_success_total[5m])) by (provider)",
+          "legendFormat": "{{provider}} Success"
+        },
+        {
+          "expr": "sum(rate(orbitly_publishing_failures_total[5m])) by (provider)",
+          "legendFormat": "{{provider}} Failure"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "id": 5,
+      "title": "AI Studio Token Expenditure ($ / hour)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(orbitly_ai_cost_usd_total[1h])) by (provider, model)",
+          "legendFormat": "{{provider}} - {{model}}"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "id": 6,
+      "title": "Billing Webhook Ingestion & Idempotency Failures",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(orbitly_payment_events_total{status=\"processed\"}[5m]))",
+          "legendFormat": "Processed Successfully"
+        },
+        {
+          "expr": "sum(rate(orbitly_payment_events_total{status=\"duplicate\"}[5m]))",
+          "legendFormat": "Duplicate Suppressed (Idempotent)"
+        },
+        {
+          "expr": "sum(rate(orbitly_payment_events_total{status=\"failed\"}[5m]))",
+          "legendFormat": "Failed"
+        }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["orbitly", "production", "observability"],
+  "time": { "from": "now-6h", "to": "now" },
+  "title": "Orbitly - Global Platform Operations & SLA Telemetry",
+  "uid": "orbitly-ops-overview",
+  "version": 1
+}

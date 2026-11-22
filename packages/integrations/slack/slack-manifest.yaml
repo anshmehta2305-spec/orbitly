@@ -1,0 +1,35 @@
+_metadata:
+  major_version: 1
+  minor_version: 1
+display_information:
+  name: Orbitly
+  description: Plan once. Publish everywhere. Social media notifications, team approvals, and scheduling from Slack.
+  background_color: "#4F46E5"
+features:
+  bot_user:
+    display_name: Orbitly
+    always_online: true
+  slash_commands:
+    - command: /orbitly
+      url: https://api.orbitly.io/slack/commands
+      description: Interact with your Orbitly publishing schedule and queue
+      usage_hint: "[schedule <text> | queue | status]"
+      should_escape: false
+oauth_config:
+  scopes:
+    bot:
+      - chat:write
+      - commands
+      - incoming-webhook
+      - channels:read
+      - users:read
+settings:
+  event_subscriptions:
+    request_url: https://api.orbitly.io/slack/events
+    bot_events:
+      - app_mention
+  interactivity:
+    is_enabled: true
+    request_url: https://api.orbitly.io/slack/interactive
+  org_deploy_enabled: false
+  socket_mode_enabled: false

@@ -1,0 +1,24 @@
+{
+  "name": "@orbitly/mobile",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/App.tsx",
+  "scripts": {
+    "start": "echo 'Starting Expo development server...'",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "echo 'Linting mobile app...'",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@orbitly/shared": "workspace:*",
+    "@orbitly/sdk": "workspace:*",
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

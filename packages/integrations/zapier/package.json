@@ -1,0 +1,13 @@
+{
+  "name": "@orbitly/zapier-app",
+  "version": "1.0.0",
+  "description": "Orbitly integration app for Zapier - Schedule and publish social posts automatically",
+  "main": "index.ts",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

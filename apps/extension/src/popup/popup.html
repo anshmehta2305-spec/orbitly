@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbitly Companion</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      width: 380px;
+      background-color: #0F172A;
+      color: #F8FAFC;
+      padding: 16px;
+      font-size: 13px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid #1E293B;
+      padding-bottom: 10px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #818CF8;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px;
+      border-radius: 4px;
+    }
+    .icon-btn:hover {
+      color: #F8FAFC;
+      background: #1E293B;
+    }
+    .channels-container {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .channel-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 16px;
+      background: #1E293B;
+      color: #94A3B8;
+      border: 1px solid #334155;
+      cursor: pointer;
+      font-size: 12px;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .channel-pill.selected {
+      background: #4F46E5;
+      color: #FFFFFF;
+      border-color: #6366F1;
+      font-weight: 500;
+    }
+    .textarea-wrapper {
+      margin-bottom: 12px;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 10px;
+      color: #F8FAFC;
+      font-size: 13px;
+      resize: none;
+      outline: none;
+    }
+    textarea:focus {
+      border-color: #6366F1;
+    }
+    .preview-card {
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+    .preview-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+    .preview-info {
+      padding: 10px;
+    }
+    .preview-title {
+      font-weight: 600;
+      font-size: 12px;
+      color: #F1F5F9;
+      margin-bottom: 4px;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .preview-url {
+      font-size: 11px;
+      color: #818CF8;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+    }
+    .btn {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .btn-primary {
+      background: #4F46E5;
+      color: #FFFFFF;
+    }
+    .btn-primary:hover {
+      background: #4338CA;
+    }
+    .btn-secondary {
+      background: #334155;
+      color: #F8FAFC;
+    }
+    .btn-secondary:hover {
+      background: #475569;
+    }
+    .status-msg {
+      margin-top: 10px;
+      font-size: 12px;
+      padding: 8px;
+      border-radius: 6px;
+      display: none;
+      text-align: center;
+    }
+    .status-msg.success {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      border: 1px solid #059669;
+      display: block;
+    }
+    .status-msg.error {
+      background: rgba(239, 68, 68, 0.2);
+      color: #F87171;
+      border: 1px solid #DC2626;
+      display: block;
+    }
+    .settings-view {
+      display: none;
+      background: #0F172A;
+    }
+    .settings-view.active {
+      display: block;
+    }
+    .composer-view.hidden {
+      display: none;
+    }
+    .field-group {
+      margin-bottom: 12px;
+    }
+    .field-group label {
+      display: block;
+      font-size: 11px;
+      color: #94A3B8;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .field-group input {
+      width: 100%;
+      padding: 8px;
+      background: #1E293B;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #F8FAFC;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <span>🪐 Orbitly</span>
+    </div>
+    <div>
+      <button class="icon-btn" id="toggle-settings-btn" title="API Settings">⚙️</button>
+    </div>
+  </div>
+
+  <!-- Settings View -->
+  <div id="settings-view" class="settings-view">
+    <div class="field-group">
+      <label>Orbitly API Key</label>
+      <input type="password" id="api-key-input" placeholder="orb_live_..." />
+    </div>
+    <div class="field-group">
+      <label>API Endpoint</label>
+      <input type="text" id="api-endpoint-input" value="https://api.orbitly.io/public/v1" />
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" id="save-settings-btn">Save Settings</button>
+      <button class="btn btn-secondary" id="cancel-settings-btn">Back</button>
+    </div>
+  </div>
+
+  <!-- Composer View -->
+  <div id="composer-view" class="composer-view">
+    <!-- Channel Picker -->
+    <div class="channels-container" id="channels-picker">
+      <div class="channel-pill selected" data-channel="twitter">𝕏 Twitter</div>
+      <div class="channel-pill selected" data-channel="linkedin">in LinkedIn</div>
+      <div class="channel-pill" data-channel="instagram">📸 Instagram</div>
+      <div class="channel-pill" data-channel="bluesky">🦋 Bluesky</div>
+      <div class="channel-pill" data-channel="reddit">🤖 Reddit</div>
+    </div>
+
+    <!-- Caption Editor -->
+    <div class="textarea-wrapper">
+      <textarea id="caption-input" placeholder="Add your commentary or thoughts..."></textarea>
+    </div>
+
+    <!-- Webpage Link Preview Card -->
+    <div class="preview-card" id="link-preview-card">
+      <img id="preview-image" src="" alt="Thumbnail" style="display: none;" />
+      <div class="preview-info">
+        <div class="preview-title" id="preview-title">Loading webpage details...</div>
+        <div class="preview-url" id="preview-url"></div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn btn-primary" id="schedule-btn">Schedule</button>
+      <button class="btn btn-secondary" id="post-now-btn">Post Now</button>
+      <button class="btn btn-secondary" id="draft-btn">Draft</button>
+    </div>
+
+    <div class="status-msg" id="status-msg"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

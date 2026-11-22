@@ -1,0 +1,1184 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // directUrl = env("DIRECT_URL")
+}
+
+// ----------------------------------------------------
+// Enums
+// ----------------------------------------------------
+enum GlobalRole {
+  USER
+  SUPERADMIN
+  SUPPORT
+}
+
+enum PlatformRole {
+  SUPERADMIN
+  SUPPORT
+}
+
+enum MembershipRole {
+  OWNER
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum ChannelProvider {
+  X_TWITTER
+  LINKEDIN
+  INSTAGRAM
+  FACEBOOK
+  THREADS
+  TIKTOK
+  YOUTUBE
+  PINTEREST
+  REDDIT
+  BLUESKY
+  MASTODON
+  TELEGRAM
+  DISCORD
+  SLACK
+  MEDIUM
+}
+
+enum ChannelStatus {
+  CONNECTED
+  NEEDS_REAUTH
+  EXPIRED
+  DISABLED
+  DISCONNECTED
+  ERROR
+}
+
+enum PostStatus {
+  DRAFT
+  IN_REVIEW
+  PENDING_APPROVAL
+  APPROVED
+  SCHEDULED
+  PUBLISHING
+  PUBLISHED
+  PARTIAL
+  FAILED
+  CANCELLED
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CHANGES_REQUESTED
+}
+
+enum InvitationStatus {
+  PENDING
+  ACCEPTED
+  REVOKED
+  EXPIRED
+}
+
+enum ApprovalMode {
+  ANY_ADMIN
+  SPECIFIC_APPROVERS
+}
+
+enum ShareScope {
+  CALENDAR
+  SELECTED_POSTS
+}
+
+enum AutomationType {
+  RECURRING
+  EVERGREEN
+  RSS
+  WEBHOOK
+}
+
+enum AutomationStatus {
+  ACTIVE
+  PAUSED
+  ERROR
+}
+
+enum AiGenerationType {
+  TEXT
+  IMAGE
+  IDEAS
+  REPURPOSE
+  HASHTAGS
+  ALT_TEXT
+}
+
+enum PlanTier {
+  FREE
+  PRO
+  TEAM
+  AGENCY
+}
+
+enum BillingProvider {
+  STRIPE
+  RAZORPAY
+}
+
+enum SubscriptionStatus {
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  PAUSED
+}
+
+enum DataRegion {
+  US
+  EU
+}
+
+// ----------------------------------------------------
+// Authentication & User Identity Models
+// ----------------------------------------------------
+model User {
+  id                 String       @id @default(cuid())
+  email              String       @unique
+  name               String?
+  passwordHash       String?
+  avatar             String?
+  locale             String       @default("en")
+  timezone           String       @default("UTC")
+  emailVerified      DateTime?
+  twoFactorEnabled   Boolean      @default(false)
+  role               GlobalRole   @default(USER)
+  platformRole       PlatformRole?
+  isDisabled         Boolean      @default(false)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  deletedAt          DateTime?
+
+  // Relations
+  accounts           Account[]
+  sessions           Session[]
+  twoFactor          TwoFactor?
+  memberships        Membership[]
+  sentInvitations    Invitation[] @relation("InvitedBy")
+  posts              Post[]       @relation("PostAuthor")
+  comments           Comment[]
+  approvalsRequested Approval[]   @relation("ApprovalRequestedBy")
+  approvalsReviewed  Approval[]   @relation("ApprovalReviewer")
+  shareLinksCreated  ShareLink[]  @relation("ShareLinkCreatedBy")
+  activityLogs       ActivityLog[]
+  auditLogs          AuditLog[]
+  notifications      Notification[]
+  aiUsages           AiUsage[]
+  aiGenerations      AiGeneration[]
+  onboarding         UserOnboarding?
+  emailPreference    EmailPreference?
+
+  @@index([email])
+}
+
+model Account {
+  id                String   @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  userAgent    String?
+  ipAddress    String?
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model VerificationToken {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+
+  @@unique([identifier, token])
+  @@index([token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([token])
+}
+
+model TwoFactor {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  secret        String   // Encrypted TOTP secret
+  recoveryCodes String[] @default([]) // Hashed recovery backup codes
+  enabled       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ----------------------------------------------------
+// Workspaces & Multitenancy
+// ----------------------------------------------------
+model Workspace {
+  id           String      @id @default(cuid())
+  name         String
+  slug         String      @unique
+  logo         String?
+  customDomain String?     @unique
+  region       DataRegion  @default(US)
+  dedicatedEgressIpPool String[] @default([])
+  timezone     String      @default("UTC")
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  deletedAt    DateTime?
+
+  memberships   Membership[]
+  invitations   Invitation[]
+  channels      Channel[]
+  posts         Post[]
+  media         Media[]
+  slots         Slot[]
+  automations   Automation[]
+  apiKeys       ApiKey[]
+  webhooks      Webhook[]
+  subscription     Subscription?
+  invoices         Invoice[]
+  settings         WorkspaceSettings?
+  shareLinks       ShareLink[]
+  activityLogs     ActivityLog[]
+  auditLogs        AuditLog[]
+  notifications    Notification[]
+  aiCredit         AiCredit?
+  aiUsages         AiUsage[]
+  aiGenerations    AiGeneration[]
+  brandVoices      BrandVoice[]
+  webhookEndpoints WebhookEndpoint[]
+  outboundWebhooks OutboundWebhook[]
+  usageCounters    UsageCounter[]
+  ssoConnection    SsoConnection?
+  dataExports      DataExportRequest[]
+
+  @@index([slug])
+  @@index([region])
+}
+
+model WorkspaceSettings {
+  id                       String       @id @default(cuid())
+  workspaceId              String       @unique
+  approvalRequired         Boolean      @default(false)
+  approvalMode             ApprovalMode @default(ANY_ADMIN)
+  approverIds              String[]     @default([])
+  autoPublishAfterApproval Boolean      @default(true)
+  defaultTimezone          String       @default("UTC")
+  brandName                String?
+  brandLogo                String?
+  brandColor               String?
+  customDomain             String?
+  customDomainSslStatus    String?      // PENDING, ACTIVE, FAILED
+  customDomainSslIssuedAt  DateTime?
+  emailDomain              String?      // e.g. send.acmecorp.com
+  emailDkimStatus          String?      // VERIFIED, PENDING, FAILED
+  emailSpfStatus           String?      // VERIFIED, PENDING, FAILED
+  emailDmarcStatus         String?      // VERIFIED, PENDING, FAILED
+  analyticsRetentionDays   Int          @default(365) // 90, 365, 730
+  auditLogRetentionDays    Int          @default(365) // 90, 365, 1825
+  deletedPostRetentionDays Int          @default(30)  // 30 days
+  legalHold                Boolean      @default(false) // Freezes all pruning and deletions
+  sessionTimeoutMinutes    Int          @default(480) // 15, 60, or 480 mins (8 hours)
+  ipAllowlist              String[]     @default([])
+  enforceSso               Boolean      @default(false)
+  scimApiKeyHash           String?
+  siemSplunkHecUrl         String?
+  siemSplunkTokenEncrypted String?
+  siemDatadogApiKeyEncrypted String?
+  createdAt                DateTime     @default(now())
+  updatedAt                DateTime     @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model Membership {
+  id          String         @id @default(cuid())
+  userId      String
+  workspaceId String
+  role        MembershipRole @default(EDITOR)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  user          User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace     Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  channelAccess MembershipChannel[]
+
+  @@unique([userId, workspaceId])
+  @@index([workspaceId])
+  @@index([userId])
+}
+
+model MembershipChannel {
+  id           String     @id @default(cuid())
+  membershipId String
+  channelId    String
+  createdAt    DateTime   @default(now())
+
+  membership Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  channel    Channel    @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@unique([membershipId, channelId])
+  @@index([membershipId])
+  @@index([channelId])
+}
+
+model Invitation {
+  id          String           @id @default(cuid())
+  email       String
+  workspaceId String
+  role        MembershipRole   @default(EDITOR)
+  token       String           @unique
+  tokenHash   String?          @unique
+  status      InvitationStatus @default(PENDING)
+  expires     DateTime
+  invitedById String
+  acceptedAt  DateTime?
+  createdAt   DateTime         @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  invitedBy User      @relation("InvitedBy", fields: [invitedById], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([token])
+  @@index([tokenHash])
+  @@index([email])
+}
+
+// ----------------------------------------------------
+// Social Channels & Integrations
+// ----------------------------------------------------
+model Channel {
+  id                    String          @id @default(cuid())
+  workspaceId           String
+  provider              ChannelProvider
+  accountName           String
+  accountId             String
+  avatar                String?
+  encryptedAccessToken  String          @db.Text
+  encryptedRefreshToken String?         @db.Text
+  keyId                 String          @default("v1")
+  tokenExpiresAt        DateTime?
+  status                ChannelStatus   @default(CONNECTED)
+  color                 String?
+  timezone              String?
+  defaultHashtags       String[]        @default([])
+  signature             String?
+  metadataJson          Json?
+  lastCheckedAt         DateTime?
+  createdAt             DateTime        @default(now())
+  updatedAt             DateTime        @updatedAt
+
+  workspace          Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  postVariants       PostVariant[]
+  slots              Slot[]
+  analyticsSnapshots AnalyticsSnapshot[]
+  membershipAccess   MembershipChannel[]
+
+  @@unique([workspaceId, provider, accountId])
+  @@index([workspaceId])
+  @@index([status])
+}
+
+// ----------------------------------------------------
+// Posts & Publishing Models
+// ----------------------------------------------------
+model Post {
+  id              String      @id @default(cuid())
+  workspaceId     String
+  authorId        String
+  title           String?
+  status          PostStatus  @default(DRAFT)
+  scheduledAt     DateTime?
+  publishedAt     DateTime?
+  timezone        String      @default("UTC")
+  groupId         String?
+  tags            String[]    @default([])
+  campaign        String?
+  approvalVersion Int         @default(1)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  deletedAt       DateTime?
+
+  workspace    Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  author       User          @relation("PostAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+  variants     PostVariant[]
+  comments     Comment[]
+  approvals    Approval[]
+  activityLogs ActivityLog[]
+
+  @@index([workspaceId, scheduledAt])
+  @@index([workspaceId, status])
+  @@index([status])
+  @@index([scheduledAt])
+  @@index([groupId])
+}
+
+model PostVariant {
+  id               String      @id @default(cuid())
+  postId           String
+  channelId        String
+  content          String      @db.Text
+  firstComment     String?     @db.Text
+  status           PostStatus  @default(DRAFT)
+  publishedAt      DateTime?
+  attempts         Int         @default(0)
+  externalId       String?
+  externalPostId   String?
+  externalUrl      String?
+  lastErrorCode    String?
+  lastErrorMessage String?     @db.Text
+  errorMessage     String?     @db.Text
+  mediaUrls        String[]    @default([])
+  thread           String[]    @default([])
+  settings         Json?
+  metadataJson     Json?
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  post               Post                @relation(fields: [postId], references: [id], onDelete: Cascade)
+  channel            Channel             @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  analyticsSnapshots AnalyticsSnapshot[]
+  postMetrics        PostMetric[]
+
+  @@index([postId])
+  @@index([channelId])
+  @@index([status])
+  @@index([channelId, status])
+}
+
+model Media {
+  id           String    @id @default(cuid())
+  workspaceId  String
+  name         String
+  url          String
+  s3Key        String
+  mimeType     String
+  sizeBytes    Int
+  width        Int?
+  height       Int?
+  duration     Float?
+  altText      String?
+  thumbnailUrl String?
+  folder       String?   @default("root")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, folder])
+}
+
+model Comment {
+  id                String    @id @default(cuid())
+  postId            String
+  authorId          String?
+  sharedViewerName  String?
+  sharedViewerEmail String?
+  content           String    @db.Text
+  parentId          String?
+  resolvedAt        DateTime?
+  mentions          String[]  @default([])
+  mediaUrls         String[]  @default([])
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  deletedAt         DateTime?
+
+  post    Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author  User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  parent  Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies Comment[] @relation("CommentReplies")
+
+  @@index([postId])
+  @@index([parentId])
+  @@index([authorId])
+}
+
+model Approval {
+  id            String         @id @default(cuid())
+  postId        String
+  requestedById String?
+  reviewerId    String?
+  reviewerName  String?
+  reviewerEmail String?
+  status        ApprovalStatus @default(PENDING)
+  note          String?        @db.Text
+  decidedAt     DateTime?
+  version       Int            @default(1)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  post        Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  requestedBy User? @relation("ApprovalRequestedBy", fields: [requestedById], references: [id], onDelete: SetNull)
+  reviewer    User? @relation("ApprovalReviewer", fields: [reviewerId], references: [id], onDelete: SetNull)
+
+  @@index([postId])
+  @@index([reviewerId])
+  @@index([requestedById])
+}
+
+model Slot {
+  id          String   @id @default(cuid())
+  workspaceId String
+  channelId   String?
+  weekday     Int      @default(1) // 0 = Sunday, 1 = Monday, ... 6 = Saturday
+  dayOfWeek   Int      @default(1)
+  time        String   @default("09:00") // "14:30" (24h format)
+  timeUtc     String   @default("09:00")
+  timezone    String   @default("UTC")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  channel   Channel?  @relation(fields: [channelId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, weekday])
+  @@index([channelId])
+}
+
+model AnalyticsSnapshot {
+  id             String    @id @default(cuid())
+  channelId      String
+  postVariantId  String?
+  date           DateTime  @db.Date
+  followers      Int       @default(0)
+  impressions    Int       @default(0)
+  reach          Int       @default(0)
+  engagements    Int       @default(0)
+  clicks         Int       @default(0)
+  likes          Int       @default(0)
+  comments       Int       @default(0)
+  shares         Int       @default(0)
+  profileViews   Int       @default(0)
+  followersCount Int?
+  rawMetricsJson Json?
+  raw            Json?
+  createdAt      DateTime  @default(now())
+
+  channel     Channel      @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  postVariant PostVariant? @relation(fields: [postVariantId], references: [id], onDelete: Cascade)
+
+  @@unique([channelId, postVariantId, date])
+  @@index([channelId, date])
+}
+
+model PostMetric {
+  id            String   @id @default(cuid())
+  postVariantId String
+  fetchedAt     DateTime @default(now())
+  impressions   Int      @default(0)
+  reach         Int      @default(0)
+  likes         Int      @default(0)
+  comments      Int      @default(0)
+  shares        Int      @default(0)
+  clicks        Int      @default(0)
+  saves         Int      @default(0)
+  raw           Json?
+  createdAt     DateTime @default(now())
+
+  postVariant PostVariant @relation(fields: [postVariantId], references: [id], onDelete: Cascade)
+
+  @@index([postVariantId, fetchedAt])
+}
+
+model Automation {
+  id                  String           @id @default(cuid())
+  workspaceId         String
+  name                String
+  type                AutomationType
+  config              Json
+  configJson          Json?
+  channelIds          String[]         @default([])
+  status              AutomationStatus @default(ACTIVE)
+  isActive            Boolean          @default(true)
+  consecutiveFailures Int              @default(0)
+  lastRunAt           DateTime?
+  nextRunAt           DateTime?
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  workspace Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  runs      AutomationRun[]
+
+  @@index([workspaceId, type])
+  @@index([status])
+  @@index([nextRunAt])
+}
+
+model AutomationRun {
+  id           String    @id @default(cuid())
+  automationId String
+  status       String    // "SUCCESS", "FAILED", "PARTIAL"
+  postsCreated Int       @default(0)
+  error        String?   @db.Text
+  startedAt    DateTime  @default(now())
+  finishedAt   DateTime?
+
+  automation Automation @relation(fields: [automationId], references: [id], onDelete: Cascade)
+
+  @@index([automationId])
+  @@index([startedAt])
+}
+
+// ----------------------------------------------------
+// ----------------------------------------------------
+// Public API & Integrations
+// ----------------------------------------------------
+model ApiKey {
+  id          String    @id @default(cuid())
+  workspaceId String
+  name        String
+  keyHash     String    @unique
+  keyPrefix   String    // e.g. "orb_live_abc1..."
+  scopes      String[]  @default(["posts:read", "posts:write"])
+  createdBy   String    @default("system")
+  ipAllowlist String[]  @default([])
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+  revokedAt   DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([keyHash])
+}
+
+model Webhook {
+  id          String   @id @default(cuid())
+  workspaceId String
+  url         String
+  secret      String
+  events      String[]
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+}
+
+model OutboundWebhook {
+  id             String            @id @default(cuid())
+  workspaceId    String
+  url            String
+  secret         String            // Encrypted signing secret
+  events         String[]          // post.scheduled, post.published, post.failed, post.approved, channel.needs_reauth
+  status         String            @default("ACTIVE") // ACTIVE, DISABLED
+  failureCount   Int               @default(0)
+  lastDeliveryAt DateTime?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  workspace  Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  deliveries WebhookDelivery[]
+
+  @@index([workspaceId])
+}
+
+model WebhookDelivery {
+  id             String          @id @default(cuid())
+  webhookId      String
+  event          String
+  payload        Json
+  responseStatus Int?
+  responseBody   String?
+  attempts       Int             @default(1)
+  nextAttemptAt  DateTime?
+  deliveredAt    DateTime?
+  error          String?
+  createdAt      DateTime        @default(now())
+
+  webhook OutboundWebhook @relation(fields: [webhookId], references: [id], onDelete: Cascade)
+
+  @@index([webhookId])
+}
+
+// ----------------------------------------------------
+// Subscriptions & Billing
+// ----------------------------------------------------
+model Plan {
+  id                    String   @id @default(cuid())
+  key                   PlanTier @unique
+  name                  String
+  limits                Json     // channels, postsPerMonth, seats, aiCredits, automations, workspaces, apiRequestsPerMin, whiteLabel, analyticsRetentionDays
+  prices                Json     // { USD: { monthly, annual }, EUR: ..., GBP: ..., INR: ... }
+  stripePriceIdMonthly  String?
+  stripePriceIdAnnual   String?
+  razorpayPlanIdMonthly String?
+  razorpayPlanIdAnnual  String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+model Subscription {
+  id                     String             @id @default(cuid())
+  workspaceId            String             @unique
+  planTier               PlanTier           @default(FREE)
+  planKey                PlanTier           @default(FREE)
+  status                 SubscriptionStatus @default(ACTIVE)
+  provider               BillingProvider    @default(STRIPE)
+  customerId             String?
+  providerCustomerId     String?
+  subscriptionId         String?            @unique
+  providerSubscriptionId String?            @unique
+  currency               String             @default("USD")
+  interval               String             @default("month")
+  trialEndsAt            DateTime?
+  currentPeriodStart     DateTime           @default(now())
+  currentPeriodEnd       DateTime?
+  cancelAtPeriodEnd      Boolean            @default(false)
+  seats                  Int                @default(1)
+  createdAt              DateTime           @default(now())
+  updatedAt              DateTime           @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  invoices  Invoice[]
+
+  @@index([workspaceId])
+  @@index([subscriptionId])
+}
+
+model Invoice {
+  id                String        @id @default(cuid())
+  workspaceId       String
+  subscriptionId    String?
+  providerInvoiceId String?
+  amountDue         Int           // in lowest currency unit (e.g. cents, paise)
+  amountPaid        Int
+  amount            Int           @default(0)
+  currency          String        @default("USD")
+  status            String        @default("paid")
+  hostedUrl         String?
+  pdfUrl            String?
+  paidAt            DateTime?
+  createdAt         DateTime      @default(now())
+
+  workspace    Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([workspaceId])
+  @@index([subscriptionId])
+}
+
+model PaymentEvent {
+  id          String          @id @default(cuid())
+  provider    BillingProvider
+  eventId     String          @unique // Idempotency
+  type        String
+  payload     Json
+  processedAt DateTime?
+  error       String?
+  createdAt   DateTime        @default(now())
+
+  @@index([eventId])
+}
+
+model UsageCounter {
+  id          String   @id @default(cuid())
+  workspaceId String
+  metric      String   // posts, aiCredits, apiRequests
+  periodStart DateTime
+  value       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, metric, periodStart])
+  @@index([workspaceId])
+}
+
+model FeatureFlag {
+  id           String     @id @default(cuid())
+  key          String     @unique
+  description  String?
+  isEnabled    Boolean    @default(false)
+  plans        PlanTier[] @default([])
+  workspaceIds String[]   @default([])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  type      String   @default("INFO") // INFO, WARNING, CRITICAL
+  startsAt  DateTime
+  endsAt    DateTime
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// ----------------------------------------------------
+// System Audit Logs & In-App Notifications
+// ----------------------------------------------------
+model AuditLog {
+  id           String    @id @default(cuid())
+  workspaceId  String?
+  userId       String?
+  action       String    // e.g. "AUTH_LOGIN", "CHANNEL_CONNECT", "ROLE_CHANGE"
+  entityType   String    // e.g. "USER", "CHANNEL", "WORKSPACE"
+  entityId     String?
+  metadataJson Json?
+  ipAddress    String?
+  userAgent    String?
+  createdAt    DateTime  @default(now())
+
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User?      @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([action])
+}
+
+model Notification {
+  id          String   @id @default(cuid())
+  userId      String
+  workspaceId String?
+  title       String
+  message     String
+  type        String   @default("INFO") // INFO, SUCCESS, WARNING, ERROR
+  read        Boolean  @default(false)
+  actionUrl   String?
+  createdAt   DateTime @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workspace Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read])
+}
+
+// ----------------------------------------------------
+// Client Share Links & Collaboration Activity
+// ----------------------------------------------------
+model ShareLink {
+  id            String          @id @default(cuid())
+  workspaceId   String
+  name          String
+  tokenHash     String          @unique
+  scope         ShareScope      @default(CALENDAR)
+  channelIds    String[]        @default([])
+  dateFrom      DateTime?
+  dateTo        DateTime?
+  passwordHash  String?
+  expiresAt     DateTime?
+  allowComments Boolean         @default(true)
+  allowApprove  Boolean         @default(false)
+  revokedAt     DateTime?
+  createdById   String
+  lastViewedAt  DateTime?
+  viewCount     Int             @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  workspace Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  createdBy User            @relation("ShareLinkCreatedBy", fields: [createdById], references: [id], onDelete: Cascade)
+  reviewers ShareReviewer[]
+
+  @@index([workspaceId])
+  @@index([tokenHash])
+}
+
+model ShareReviewer {
+  id                   String    @id @default(cuid())
+  shareLinkId          String
+  name                 String
+  email                String
+  verifiedAt           DateTime?
+  verificationCodeHash String?
+  verificationExpires  DateTime?
+  createdAt            DateTime  @default(now())
+
+  shareLink ShareLink @relation(fields: [shareLinkId], references: [id], onDelete: Cascade)
+
+  @@unique([shareLinkId, email])
+  @@index([shareLinkId])
+}
+
+model ActivityLog {
+  id          String    @id @default(cuid())
+  workspaceId String
+  postId      String?
+  actorId     String?
+  actorName   String?
+  actorEmail  String?
+  action      String    // e.g. "POST_CREATED", "POST_EDITED", "POST_SUBMITTED", "POST_APPROVED", "POST_CHANGES_REQUESTED", "POST_REJECTED", "COMMENT_ADDED"
+  entity      String    // "POST", "COMMENT", "MEMBER", "WORKSPACE", "SHARE_LINK"
+  entityId    String?
+  diffJson    Json?     // text diffs, changed fields
+  beforeJson  Json?
+  afterJson   Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime  @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  post      Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  actor     User?     @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([postId])
+  @@index([createdAt])
+}
+
+// ----------------------------------------------------
+// AI Studio, Brand Voice & Inbound Webhooks
+// ----------------------------------------------------
+model AiCredit {
+  id               String   @id @default(cuid())
+  workspaceId      String   @unique
+  balance          Int      @default(20)
+  monthlyAllowance Int      @default(20)
+  resetsAt         DateTime
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+model AiUsage {
+  id              String   @id @default(cuid())
+  workspaceId     String
+  userId          String
+  feature         String   // "POST_WRITER", "REWRITE", "IDEAS", "REPURPOSE", "HASHTAGS", "ALT_TEXT", "IMAGE", "BRAND_VOICE"
+  provider        String   // "mock", "openai", "anthropic", "google"
+  model           String
+  inputTokens     Int      @default(0)
+  outputTokens    Int      @default(0)
+  creditsDeducted Int      @default(1)
+  cost            Float    @default(0.0)
+  createdAt       DateTime @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model AiGeneration {
+  id             String           @id @default(cuid())
+  workspaceId    String
+  userId         String
+  type           AiGenerationType
+  prompt         String           @db.Text
+  output         Json
+  status         String           @default("COMPLETED")
+  savedToLibrary Boolean          @default(false)
+  createdAt      DateTime         @default(now())
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([type])
+}
+
+model BrandVoice {
+  id              String   @id @default(cuid())
+  workspaceId     String
+  name            String
+  description     String?  @db.Text
+  traits          String[] @default([]) // e.g. ["Witty", "Authoritative", "Empathetic"]
+  dos             String[] @default([])
+  donts           String[] @default([])
+  sampleTexts     String[] @default([])
+  bannedWords     String[] @default([])
+  defaultLanguage String   @default("en")
+  isDefault       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+}
+
+model WebhookEndpoint {
+  id                String    @id @default(cuid())
+  workspaceId       String
+  name              String
+  tokenHash         String    @unique
+  signingSecretHash String
+  isActive          Boolean   @default(true)
+  lastUsedAt        DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([tokenHash])
+}
+
+// ----------------------------------------------------
+// Activation, Onboarding & Growth Models (Step 10)
+// ----------------------------------------------------
+model UserOnboarding {
+  id               String    @id @default(cuid())
+  userId           String    @unique
+  connectedChannel Boolean   @default(false)
+  createdPost      Boolean   @default(false)
+  scheduledPost    Boolean   @default(false)
+  invitedTeammate  Boolean   @default(false)
+  triedAi          Boolean   @default(false)
+  dismissed        Boolean   @default(false)
+  tourStep         Int       @default(0)
+  abVariant        String    @default("A") // "A" (guided flow) vs "B" (checklist first)
+  completedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model EmailPreference {
+  id                String    @id @default(cuid())
+  userId            String    @unique
+  marketing         Boolean   @default(true)
+  lifecycle         Boolean   @default(true)
+  weeklyDigest      Boolean   @default(true)
+  unsubscribeToken  String    @unique @default(cuid())
+  unsubscribedAllAt DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model FunnelEvent {
+  id          String   @id @default(cuid())
+  userId      String?
+  workspaceId String?
+  eventName   String   // signup, verified, channel_connected, first_post_scheduled, first_post_published, upgrade
+  properties  Json?
+  createdAt   DateTime @default(now())
+
+  @@index([eventName, createdAt])
+  @@index([userId])
+  @@index([workspaceId])
+}
+
+// ----------------------------------------------------
+// Enterprise SSO & Compliance (Increment 4)
+// ----------------------------------------------------
+enum SsoProviderType {
+  SAML
+  OIDC
+}
+
+model SsoConnection {
+  id                  String          @id @default(cuid())
+  workspaceId         String          @unique
+  providerType        SsoProviderType @default(SAML)
+  domain              String          @unique // e.g. "acme.com"
+  idpEntityId         String?         // SAML Entity ID / Issuer
+  idpSsoUrl           String?         // SAML SSO endpoint
+  idpCertificate      String?         // SAML X.509 cert
+  oidcClientId        String?         // OIDC Client ID
+  oidcClientSecretEnc String?         // Encrypted OIDC Secret
+  oidcIssuer          String?         // OIDC Discovery / Issuer URL
+  enforceSso          Boolean         @default(false)
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([domain])
+}
+
+model BackupVerificationLog {
+  id             String   @id @default(cuid())
+  status         String   // "VERIFIED" | "FAILED"
+  rpoMinutes     Int      @default(15) // Recovery Point Objective (15 min)
+  rtoMinutes     Int      @default(30) // Recovery Time Objective (30 min)
+  backupSizeBytes BigInt  @default(0)
+  checksumSha256 String
+  verifiedAt     DateTime @default(now())
+  detailsJson    Json?
+
+  @@index([verifiedAt])
+}
+
+model DataExportRequest {
+  id           String    @id @default(cuid())
+  workspaceId  String
+  userId       String
+  status       String    @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED
+  format       String    @default("JSON")    // JSON, CSV
+  downloadUrl  String?
+  expiresAt    DateTime?
+  createdAt    DateTime  @default(now())
+  completedAt  DateTime?
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId])
+  @@index([userId])
+}
+
+model RightToBeForgottenRequest {
+  id           String    @id @default(cuid())
+  userId       String
+  email        String
+  status       String    @default("PENDING") // PENDING, COMPLETED, FAILED
+  anonymizedAt DateTime?
+  requestedAt  DateTime  @default(now())
+
+  @@index([email])
+}
+
+
+

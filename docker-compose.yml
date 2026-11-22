@@ -1,0 +1,74 @@
+services:
+  # ------------------------------------------
+  # PostgreSQL Database (Relational Data)
+  # ------------------------------------------
+  postgres:
+    image: postgres:16-alpine
+    container_name: orbitly-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: orbitly
+      POSTGRES_PASSWORD: orbitly_secret
+      POSTGRES_DB: orbitly_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orbitly -d orbitly_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ------------------------------------------
+  # Redis 7 (Queues, Rate Limiting & Sessions)
+  # ------------------------------------------
+  redis:
+    image: redis:7-alpine
+    container_name: orbitly-redis
+    restart: unless-stopped
+    command: redis-server --requirepass orbitly_redis_secret
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "orbitly_redis_secret", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ------------------------------------------
+  # MinIO (S3-Compatible Object Storage)
+  # ------------------------------------------
+  minio:
+    image: minio/minio:RELEASE.2024-01-18T22-51-28Z
+    container_name: orbitly-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  # ------------------------------------------
+  # Mailpit (Development Email Testing & API)
+  # ------------------------------------------
+  mailpit:
+    image: axllent/mailpit:v1.18
+    container_name: orbitly-mailpit
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI & REST API for tests
+    environment:
+      MP_MAX_MESSAGES: 500
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:

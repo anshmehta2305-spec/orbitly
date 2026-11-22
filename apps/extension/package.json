@@ -1,0 +1,20 @@
+{
+  "name": "@orbitly/extension",
+  "version": "1.0.0",
+  "description": "Orbitly Chrome Extension (MV3) - Quick-share any webpage to your social channels",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@orbitly/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
