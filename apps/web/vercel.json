@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "buildCommand": "pnpm --filter @orbitly/shared build && DATABASE_URL=\"postgresql://placeholder:secret@localhost:5432/orbitly_db?schema=public\" pnpm --filter @orbitly/db generate && next build",
+  "buildCommand": "DATABASE_URL=\"postgresql://placeholder:secret@localhost:5432/orbitly_db?schema=public\" pnpm --filter @orbitly/db generate && next build",
   "installCommand": "pnpm install --no-frozen-lockfile"
 }
