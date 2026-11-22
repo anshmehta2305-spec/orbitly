@@ -40,7 +40,7 @@ export default function MagicLinkVerifyPage() {
   }, [token, router, locale]);
 
   return (
-    <Card className="w-full glass-panel-light dark:glass-panel shadow-2xl border-border/80 text-center py-8">
+    <Card className="w-full bg-card/95 backdrop-blur-xl shadow-2xl border border-border text-center py-8">
       <CardHeader>
         <CardTitle className="text-xl font-bold">Magic Link Authentication</CardTitle>
         <CardDescription>

@@ -83,7 +83,7 @@ export default function OnboardingPage() {
         </div>
 
         {/* Step Card */}
-        <Card className="glass-panel-light dark:glass-panel shadow-2xl border-border/80">
+        <Card className="bg-card/95 backdrop-blur-xl shadow-2xl border border-border">
           <CardHeader className="text-center pb-4">
             <CardTitle className="text-2xl font-bold tracking-tight">
               {step === 1 && 'Personalize Your Profile'}

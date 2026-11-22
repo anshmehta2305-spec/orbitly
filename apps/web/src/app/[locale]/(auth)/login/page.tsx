@@ -94,10 +94,10 @@ export default function LoginPage() {
   };
 
   return (
-    <Card className="w-full glass-panel-light dark:glass-panel shadow-2xl border-border/80">
+    <Card className="w-full bg-card/95 backdrop-blur-xl shadow-2xl border border-border">
       <CardHeader className="text-center pb-4">
-        <CardTitle className="text-2xl font-bold tracking-tight">{t('loginTitle')}</CardTitle>
-        <CardDescription>{t('loginSubtitle')}</CardDescription>
+        <CardTitle className="text-2xl font-bold tracking-tight text-card-foreground">{t('loginTitle')}</CardTitle>
+        <CardDescription className="text-muted-foreground">{t('loginSubtitle')}</CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-4">

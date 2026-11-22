@@ -53,7 +53,7 @@ export default function ResetPasswordPage() {
   };
 
   return (
-    <Card className="w-full glass-panel-light dark:glass-panel shadow-2xl border-border/80">
+    <Card className="w-full bg-card/95 backdrop-blur-xl shadow-2xl border border-border">
       <CardHeader className="text-center pb-4">
         <CardTitle className="text-2xl font-bold tracking-tight">{t('resetPasswordTitle')}</CardTitle>
         <CardDescription>Choose a new, strong password for your Orbitly account.</CardDescription>

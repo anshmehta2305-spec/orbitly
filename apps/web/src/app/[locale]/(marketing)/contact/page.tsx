@@ -73,7 +73,7 @@ export default function ContactPage() {
 
       <Section className="pt-0">
         <Container className="max-w-xl">
-          <Card className="glass-panel-light dark:glass-panel p-6 sm:p-8 rounded-3xl border border-border shadow-2xl">
+          <Card className="bg-card/95 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-border shadow-2xl">
             {isSuccess ? (
               <div className="text-center py-12 space-y-4">
                 <div className="w-14 h-14 bg-emerald-500/10 text-emerald-500 rounded-2xl mx-auto flex items-center justify-center">

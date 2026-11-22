@@ -53,7 +53,7 @@ export default function TwoFactorPage() {
   };
 
   return (
-    <Card className="w-full glass-panel-light dark:glass-panel shadow-2xl border-border/80 text-center">
+    <Card className="w-full bg-card/95 backdrop-blur-xl shadow-2xl border border-border text-center">
       <CardHeader className="pb-4">
         <div className="w-14 h-14 bg-primary/10 text-primary rounded-2xl mx-auto flex items-center justify-center mb-2">
           <ShieldCheck className="w-7 h-7" />
