@@ -32,45 +32,32 @@ export default function SignupPage() {
   const onSignup = async (data: SignupInput) => {
     setIsLoading(true);
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-      const res = await fetch(`${apiUrl}/auth/signup`, {
+      // Calls Next.js relative endpoint - works on localhost and on Vercel with zero cross-origin issues
+      const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
         body: JSON.stringify(data),
       });
 
       const resData = await res.json();
       if (!res.ok) {
-        // Map server-side field-level validation errors to inputs
         if (resData.errors && typeof resData.errors === 'object') {
           Object.entries(resData.errors).forEach(([field, msg]) => {
             setError(field as any, { type: 'server', message: String(msg) });
           });
         }
-        const hasRef = resData.message?.includes(resData.requestId);
-        const refSuffix = resData.requestId && !hasRef ? ` (Ref: ${resData.requestId})` : '';
-        throw new Error((resData.message || 'Signup failed') + refSuffix);
+        throw new Error(resData.message || 'Signup failed');
+      }
+
+      if (resData.tokens?.accessToken) {
+        localStorage.setItem('orbitly_access_token', resData.tokens.accessToken);
+        localStorage.setItem('orbitly_user', JSON.stringify(resData.user));
+        document.cookie = `orbitly_access_token=${resData.tokens.accessToken}; path=/; max-age=86400; SameSite=Lax`;
       }
 
       toast.success('Account created! Welcome to Orbitly.');
-      // Direct user through onboarding flow
-      router.push(`/${locale}/onboarding?token=${resData.verificationToken || ''}`);
+      router.push(`/${locale}/onboarding`);
     } catch (err: any) {
-      if (err.message?.includes('Failed to fetch')) {
-        const demoUser = {
-          id: 'usr_new_123',
-          email: data.email,
-          name: data.name,
-          role: 'USER',
-        };
-        localStorage.setItem('orbitly_access_token', 'demo_token_signup_123');
-        localStorage.setItem('orbitly_user', JSON.stringify(demoUser));
-        document.cookie = 'orbitly_access_token=demo_token_signup_123; path=/; max-age=86400; SameSite=Lax';
-        toast.success('Account created (Demo Mode)! Welcome to Orbitly.');
-        router.push(`/${locale}/onboarding`);
-        return;
-      }
       toast.error(err.message || 'Registration failed');
     } finally {
       setIsLoading(false);
