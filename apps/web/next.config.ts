@@ -30,7 +30,6 @@ const nextConfig: NextConfig = {
   output: process.env.STANDALONE === 'true' ? 'standalone' : undefined,
   transpilePackages: ['@orbitly/shared'],
   experimental: {
-    webpackBuildWorker: false,
     optimizePackageImports: ['lucide-react', 'framer-motion', '@orbitly/shared'],
   },
   images: {
