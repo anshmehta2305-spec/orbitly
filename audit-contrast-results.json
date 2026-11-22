@@ -1,0 +1,1073 @@
+{
+  "totalContrastViolations": 90,
+  "worst10": [
+    {
+      "pageTheme": "marketing-home (light)",
+      "violations": 22
+    },
+    {
+      "pageTheme": "marketing-pricing (light)",
+      "violations": 11
+    },
+    {
+      "pageTheme": "marketing-features (light)",
+      "violations": 10
+    },
+    {
+      "pageTheme": "marketing-changelog (light)",
+      "violations": 8
+    },
+    {
+      "pageTheme": "marketing-docs (light)",
+      "violations": 8
+    },
+    {
+      "pageTheme": "marketing-blog (light)",
+      "violations": 5
+    },
+    {
+      "pageTheme": "marketing-design-system (light)",
+      "violations": 5
+    },
+    {
+      "pageTheme": "marketing-integrations (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-terms (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-privacy (light)",
+      "violations": 4
+    }
+  ],
+  "pageContrastTable": [
+    {
+      "pageTheme": "marketing-home (light)",
+      "violations": 22
+    },
+    {
+      "pageTheme": "marketing-pricing (light)",
+      "violations": 11
+    },
+    {
+      "pageTheme": "marketing-features (light)",
+      "violations": 10
+    },
+    {
+      "pageTheme": "marketing-changelog (light)",
+      "violations": 8
+    },
+    {
+      "pageTheme": "marketing-docs (light)",
+      "violations": 8
+    },
+    {
+      "pageTheme": "marketing-blog (light)",
+      "violations": 5
+    },
+    {
+      "pageTheme": "marketing-design-system (light)",
+      "violations": 5
+    },
+    {
+      "pageTheme": "marketing-integrations (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-terms (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-privacy (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-cookies (light)",
+      "violations": 4
+    },
+    {
+      "pageTheme": "marketing-about (light)",
+      "violations": 3
+    },
+    {
+      "pageTheme": "marketing-contact (light)",
+      "violations": 2
+    },
+    {
+      "pageTheme": "marketing-not-found (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-signup (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-reset-password (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-magic-link (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-onboarding (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-calendar (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-analytics (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-approvals (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-team (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-billing (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-security (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-users (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-subscriptions (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-providers (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-funnel (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-announcements (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "public-unsubscribe (light)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-home (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-features (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-pricing (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-integrations (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-blog (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-about (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-contact (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-changelog (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-docs (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-terms (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-privacy (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-cookies (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-design-system (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "marketing-not-found (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-login (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-signup (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-forgot-password (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-reset-password (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-verify-email (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-magic-link (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-2fa (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "auth-onboarding (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-dashboard (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-calendar (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-channels (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-analytics (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-ai (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-approvals (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-automations (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-team (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-workspace (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-billing (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-developers (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "app-settings-security (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-overview (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-users (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-workspaces (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-subscriptions (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-queues (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-providers (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-flags (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-funnel (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-audit (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "admin-announcements (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "public-share (dark)",
+      "violations": 0
+    },
+    {
+      "pageTheme": "public-unsubscribe (dark)",
+      "violations": 0
+    }
+  ],
+  "detailedViolations": [
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".fade-in > span",
+      "html": "<span>Orbitly 2.0 is Live • Cross-Platform Social Publishing</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".grid-cols-7.mb-2.text-slate-500 > span:nth-child(3)",
+      "html": "<span>Wed</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #64748b, background color: #0a1122, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".grid-cols-7.mb-2.text-slate-500 > span:nth-child(4)",
+      "html": "<span>Thu</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #64748b, background color: #0a1122, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": "span:nth-child(5)",
+      "html": "<span>Fri</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #64748b, background color: #0a1122, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": "span:nth-child(6)",
+      "html": "<span>Sat</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #64748b, background color: #0a1122, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": "span:nth-child(7)",
+      "html": "<span>Sun</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #64748b, background color: #0a1122, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".bg-slate-800\\/20.text-slate-500.h-16:nth-child(1)",
+      "html": "<div class=\"h-16 p-1 rounded-xl bg-slate-800/20 border border-white/5 text-slate-500\">17</div>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.81 (foreground color: #64748b, background color: #0e1527, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".bg-slate-800\\/20.text-slate-500.h-16:nth-child(6)",
+      "html": "<div class=\"h-16 p-1 rounded-xl bg-slate-800/20 border border-white/5 text-slate-500\">22</div>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.81 (foreground color: #64748b, background color: #0e1527, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".text-\\[9px\\].text-slate-500",
+      "html": "<p class=\"text-[9px] text-slate-500\">2.4 MB • 3840x2160</p>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.5 (foreground color: #64748b, background color: #141e30, font size: 6.8pt (9px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".hover\\:border-primary\\/50.p-8.group:nth-child(1) > .text-5xl.text-muted\\/30.top-4",
+      "html": "<span class=\"text-5xl font-black text-muted/30 absolute right-4 top-4 select-none\">01</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.05 (foreground color: #111928, background color: #0c1320, font size: 36.0pt (48px), font weight: bold). Expected contrast ratio of 3:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".hover\\:border-primary\\/50.p-8.group:nth-child(2) > .text-5xl.text-muted\\/30.top-4",
+      "html": "<span class=\"text-5xl font-black text-muted/30 absolute right-4 top-4 select-none\">02</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.05 (foreground color: #111928, background color: #0c1320, font size: 36.0pt (48px), font weight: bold). Expected contrast ratio of 3:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".hover\\:border-primary\\/50.p-8.group:nth-child(3) > .text-5xl.text-muted\\/30.top-4",
+      "html": "<span class=\"text-5xl font-black text-muted/30 absolute right-4 top-4 select-none\">03</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.05 (foreground color: #111928, background color: #0c1320, font size: 36.0pt (48px), font weight: bold). Expected contrast ratio of 3:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".space-y-4 > .border-primary\\/20.py-0\\.5.px-2\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".pb-2 > .text-primary",
+      "html": "<span class=\"text-primary\">14 Posts Ready</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101c, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".bg-secondary\\/40 > p:nth-child(1)",
+      "html": "<p class=\"font-semibold text-primary\">Customized for LinkedIn:</p>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.98 (foreground color: #6467f2, background color: #121928, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".py-16.sm\\:py-24:nth-child(6) > .max-w-7xl.sm\\:px-6.lg\\:px-8 > .mb-12.max-w-2xl.text-center > .border-primary\\/20.py-0\\.5.px-2\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".bg-secondary\\/20.py-16.sm\\:py-24:nth-child(7) > .max-w-7xl.sm\\:px-6.lg\\:px-8 > .mb-12.max-w-2xl.text-center > .border-primary\\/20.py-0\\.5.px-2\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.88 (foreground color: #6467f2, background color: #151a33, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".text-primary-foreground",
+      "html": "<div class=\"inline-flex items-center rounded-full border tracking-wide transition-colors border-primary/20 bg-primary text-primary-foreground text-xs ",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #0f1729, background color: #6467f2, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".hover\\:underline.gap-1[href$=\"pricing\"] > span",
+      "html": "<span>View full feature comparison matrix across all tiers</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.43 (foreground color: #6467f2, background color: #080c16, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".max-w-4xl.sm\\:px-6.lg\\:px-8 > .mb-12.text-center.space-y-3 > .border-primary\\/20.py-0\\.5.px-2\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.88 (foreground color: #6467f2, background color: #151a33, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-home",
+      "path": "/en",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60 > .px-1\\.5.rounded.py-0\\.5",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#calendar > .space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#composer > .lg\\:order-2.space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#ai > .space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#team > .lg\\:order-2.space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#analytics > .space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#client-sharing > .lg\\:order-2.space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": "#automations > .space-y-4 > .border-primary\\/20.tracking-wide.py-0\\.5",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-features",
+      "path": "/en/features",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".border-primary\\/20",
+      "html": "<div class=\"inline-flex items-center rounded-full border tracking-wide transition-colors border-primary/20 bg-primary text-primary-foreground text-xs ",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #0f1729, background color: #6467f2, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": "th:nth-child(4)",
+      "html": "<th class=\"p-4 text-center text-primary\">Team</th>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.82 (foreground color: #6467f2, background color: #151d2d, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(1) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">25</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(2) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">1,000</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(3) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">10</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(4) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">1,000</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(5) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">365 Days</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(6) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">1200</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".hover\\:bg-secondary\\/30:nth-child(15) > .text-primary.font-semibold.text-center",
+      "html": "<td class=\"p-4 text-center text-primary font-semibold\">Priority</td>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.24 (foreground color: #6467f2, background color: #0c1220, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-pricing",
+      "path": "/en/pricing",
+      "theme": "light",
+      "target": ".text-\\[10px\\].bg-primary\\/10.px-1\\.5",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-integrations",
+      "path": "/en/integrations",
+      "theme": "light",
+      "target": ".bg-primary",
+      "html": "<button class=\"px-3 py-1 rounded-xl font-semibold transition-all bg-primary text-white shadow-sm\">All (16)</button>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.4 (foreground color: #ffffff, background color: #6467f2, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-integrations",
+      "path": "/en/integrations",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-integrations",
+      "path": "/en/integrations",
+      "theme": "light",
+      "target": ".px-1\\.5",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-integrations",
+      "path": "/en/integrations",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-blog",
+      "path": "/en/blog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(1) > div:nth-child(1) > .text-\\[11px\\].mb-3.justify-between > .font-semibold",
+      "html": "<span class=\"font-semibold text-primary\">Strategy</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-blog",
+      "path": "/en/blog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(2) > div:nth-child(1) > .text-\\[11px\\].mb-3.justify-between > .font-semibold",
+      "html": "<span class=\"font-semibold text-primary\">AI &amp; Automation</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-blog",
+      "path": "/en/blog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(3) > div:nth-child(1) > .text-\\[11px\\].mb-3.justify-between > .font-semibold",
+      "html": "<span class=\"font-semibold text-primary\">Engineering</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 8.3pt (11px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-blog",
+      "path": "/en/blog",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-blog",
+      "path": "/en/blog",
+      "theme": "light",
+      "target": ".px-1\\.5",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-about",
+      "path": "/en/about",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-about",
+      "path": "/en/about",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-about",
+      "path": "/en/about",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-contact",
+      "path": "/en/contact",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-contact",
+      "path": "/en/contact",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(1) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .border-primary\\/20.rounded-full.tracking-wide",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.91 (foreground color: #6467f2, background color: #141933, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(1) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .text-primary.font-bold",
+      "html": "<span class=\"text-xs font-bold text-primary\">Major Release</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(2) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .border-primary\\/20.rounded-full.tracking-wide",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.91 (foreground color: #6467f2, background color: #141933, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(2) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .text-primary.font-bold",
+      "html": "<span class=\"text-xs font-bold text-primary\">Feature Update</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(3) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .border-primary\\/20.rounded-full.tracking-wide",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.91 (foreground color: #6467f2, background color: #141933, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-8:nth-child(3) > .flex-wrap.mb-3.justify-between > .gap-2.flex.items-center > .text-primary.font-bold",
+      "html": "<span class=\"text-xs font-bold text-primary\">Initial Launch</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-changelog",
+      "path": "/en/changelog",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(1) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(2) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(3) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(4) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(5) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-card-foreground.shadow-sm.p-6:nth-child(6) > .pt-4.mt-2.border-t > span",
+      "html": "<span>Read Guide</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.31 (foreground color: #6467f2, background color: #0a101d, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-docs",
+      "path": "/en/docs",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-terms",
+      "path": "/en/terms",
+      "theme": "light",
+      "target": ".rounded-full",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-terms",
+      "path": "/en/terms",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-terms",
+      "path": "/en/terms",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-terms",
+      "path": "/en/terms",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-privacy",
+      "path": "/en/privacy",
+      "theme": "light",
+      "target": ".rounded-full",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-privacy",
+      "path": "/en/privacy",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-privacy",
+      "path": "/en/privacy",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-privacy",
+      "path": "/en/privacy",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-cookies",
+      "path": "/en/cookies",
+      "theme": "light",
+      "target": ".rounded-full",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.08 (foreground color: #6467f2, background color: #11152c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-cookies",
+      "path": "/en/cookies",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-cookies",
+      "path": "/en/cookies",
+      "theme": "light",
+      "target": ".text-\\[10px\\]",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-cookies",
+      "path": "/en/cookies",
+      "theme": "light",
+      "target": ".hover\\:underline",
+      "html": "<a class=\"text-primary hover:underline font-medium\" href=\"/en/cookies\">Read our Cookie Policy</a>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.21 (foreground color: #6467f2, background color: #0c1321, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-design-system",
+      "path": "/en/design-system",
+      "theme": "light",
+      "target": ".text-primary-foreground",
+      "html": "<button class=\"inline-flex items-ce...\">",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.05 (foreground color: #0f1729, background color: #6467f2, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-design-system",
+      "path": "/en/design-system",
+      "theme": "light",
+      "target": ".border-primary\\/20",
+      "html": "<div class=\"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide transition-colors bg-primary/10 text-primar",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.95 (foreground color: #6467f2, background color: #131832, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-design-system",
+      "path": "/en/design-system",
+      "theme": "light",
+      "target": ".mt-1",
+      "html": "<p class=\"mt-1 text-xs text-destructive font-medium\">Please enter a valid format</p>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 1.92 (foreground color: #811d1d, background color: #0a101c, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-design-system",
+      "path": "/en/design-system",
+      "theme": "light",
+      "target": ".text-muted-foreground\\/60",
+      "html": "<span class=\"text-muted-foreground/60 cursor-not-allowed\">Careers <span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\"",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.39 (foreground color: #5d6879, background color: #0a0f1b, font size: 9.0pt (12px), font weight: normal). Expected contrast ratio of 4.5:1"
+    },
+    {
+      "route": "marketing-design-system",
+      "path": "/en/design-system",
+      "theme": "light",
+      "target": ".px-1\\.5",
+      "html": "<span class=\"text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-bold\">Hiring</span>",
+      "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.96 (foreground color: #6467f2, background color: #131831, font size: 7.5pt (10px), font weight: bold). Expected contrast ratio of 4.5:1"
+    }
+  ]
+}

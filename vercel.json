@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
   "buildCommand": "pnpm --filter @orbitly/db generate && pnpm --filter @orbitly/web build",
   "outputDirectory": "apps/web/.next",
   "installCommand": "pnpm install"
