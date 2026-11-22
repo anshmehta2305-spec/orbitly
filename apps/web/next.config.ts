@@ -27,7 +27,7 @@ const isWindows = process.platform === 'win32';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  output: process.env.STANDALONE === 'true' || (!isWindows && process.env.NODE_ENV === 'production') ? 'standalone' : undefined,
+  output: process.env.STANDALONE === 'true' ? 'standalone' : undefined,
   transpilePackages: ['@orbitly/shared'],
   experimental: {
     webpackBuildWorker: false,
